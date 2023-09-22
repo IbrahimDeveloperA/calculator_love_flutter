@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(Love());
@@ -9,7 +11,8 @@ class Love extends StatefulWidget {
 
 class _LoveState extends State<Love> {
   TextEditingController _textFieldController = TextEditingController();
-  String _result = '';
+  TextEditingController _textFieldController2 = TextEditingController();
+  int _result = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +49,7 @@ class _LoveState extends State<Love> {
               padding: EdgeInsets.all(20),
               color: Colors.pinkAccent[100],
               child: TextField(
+                controller: _textFieldController2,
                 style: TextStyle(color: Colors.green),
                 decoration: InputDecoration(
                   labelText: 'Введите текст',
@@ -61,21 +65,20 @@ class _LoveState extends State<Love> {
               child: ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    _result = _textFieldController.text;
+                    _result = int.parse(_textFieldController.text) +int.parse(_textFieldController2.text)  ;
+                  //  _result = _textFieldController.text;
                   });
                 },
                 child: Text(
                   'Calculator Love',
-                  style: TextStyle(fontSize: 28.0),
+                  style: TextStyle(fontSize: 28.0,),
                 ),
-                style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50)),
               ),
             ),
             Container(
               margin: EdgeInsets.all(16),
               child: Text(
-                _result,
+                _result.toString(),
                 style: TextStyle(
                   fontSize: 30.0,
                   color: Colors.cyanAccent,
